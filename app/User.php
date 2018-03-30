@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-App\Model\Question;
+use App\Model\Question;
 
 class User extends Authenticatable
 {
