@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use App\Http\Resources\CategoryResource;
+
 
 class CategoryController extends Controller
 {
@@ -17,7 +19,7 @@ class CategoryController extends Controller
     {
         // returning all qns using QuestionResource
         // return CategoryResource::collection(Category::latest()->get());
-        return category::latest()->get();
+        return CategoryResource::collection(category::latest()->get());
     }
 
     /**
@@ -55,7 +57,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
