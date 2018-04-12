@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $this->middleware('JWT', ['except' => ['index', 'show']]);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -81,7 +81,7 @@ class CategoryController extends Controller
     {
         // $category->update($request->all());
         // return response('Updated', Response::HTTP_ACCEPTED);
-        $category->update(['name'=>$request->name, 'slug'=>str_slug($request->name)]);
+        $category->update(['name' => $request->name, 'slug' => str_slug($request->name)]);
         return response('Updated', Response::HTTP_ACCEPTED);
     }
 

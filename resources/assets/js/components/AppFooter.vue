@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="auto" class="cyan darken-3">
+  <v-footer height="auto" class="cyan darken-3" id="footer">
     <v-layout row wrap justify-center>
       <!-- <v-btn
         color="white"
@@ -15,3 +15,6 @@
     </v-layout>
   </v-footer>
 </template>
+<script>
+export default {};
+</script>
