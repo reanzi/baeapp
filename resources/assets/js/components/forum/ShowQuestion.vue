@@ -1,0 +1,58 @@
+<template>
+    <v-card>
+        <v-container fluid>
+            <v-card-title class="show">
+                <div>
+                    <div class="headline">
+                        {{data.title}}
+                    </div>
+                    <span class="grey--text"> {{data.user}}, Said {{data.created_at}} </span>
+                </div>
+                <v-spacer></v-spacer>
+                <v-btn color="teal white--text">37 Replies</v-btn>
+            </v-card-title>
+            <v-card-text v-html="body"></v-card-text>
+            <v-card-actions v-if="own">
+                <v-btn icon small @click="edit">
+                    <v-icon color="cyan">edit</v-icon>
+                </v-btn>
+                <v-btn icon small @click="destroy">
+                    <v-icon color="red">delete</v-icon>
+                </v-btn>
+            </v-card-actions>
+        </v-container>
+    </v-card>
+</template>
+
+<script>
+export default {
+  props: ["data"],
+  data() {
+    return {
+      own: User.own(this.data.user_id)
+    };
+  },
+  computed: {
+    body() {
+      return md.parse(this.data.body);
+    }
+  },
+  methods: {
+    destroy() {
+      axios
+        .delete(`/api/question/${this.data.slug}`)
+        .then(res => this.$router.push("/forum"))
+        .catch(erro => console.log(error.response.data));
+    },
+    edit() {
+      EventBus.$emit("startEditing");
+    }
+  }
+};
+</script>
+
+<style scoped>
+.show {
+  margin-top: 55px;
+}
+</style>

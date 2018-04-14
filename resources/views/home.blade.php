@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{asset('css/app.css') }}">
 
     <style>
+        body {
+            margin-top: 60px;
+        }
+
         #app2 {
             padding: 10px;
             bottom: 60px;

@@ -9,7 +9,7 @@ use App\Http\Resources\QuestionResource;
 
 class QuestionController extends Controller
 {
-     /**
+    /**
      * Create a new AuthController instance.
      *
      * @return void
@@ -38,9 +38,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        // auth()->user()->question()->create($request->all());
-        Question::create($request->all());
-        return response('Created', Response::HTTP_CREATED);
+        // $request['slug'] = str_slug($request->title);  // one option , not used though
+        // slugifying method, better one is used in the model
+        $question = auth()->user()->question()->create($request->all());
+        return response(new QuestionResource($question), Response::HTTP_CREATED);
     }
 
     /**
@@ -54,7 +55,7 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
-   
+
     /**
      * Update the specified resource in storage.
      *

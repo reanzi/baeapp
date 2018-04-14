@@ -6,12 +6,16 @@ import Login from '../components/auth/Login'
 import Signup from '../components/auth/Signup'
 import Logout from '../components/auth/Logout'
 import Forum from '../components/forum/Forum'
+import ReadQuestion from '../components/forum/ReadQuestion'
+import CreateQuestion from '../components/forum/CreateQuestion'
 
 const routes = [
 	{ path: '/login', component: Login },
 	{ path: '/logout', component: Logout },
 	{ path: '/signup', component: Signup },
 	{ path: '/forum', component: Forum, name: 'forum' },
+	{ path: '/ask', component: CreateQuestion },
+	{ path: '/question/:slug', component: ReadQuestion, name: 'read' },
 ]
 
 

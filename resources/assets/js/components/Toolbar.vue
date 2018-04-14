@@ -1,7 +1,7 @@
 <template>
-  <v-toolbar class="cyan darken-3 white--text" >
+  <v-toolbar fixed class="cyan darken-3 white--text" >
     <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-    <v-toolbar-title>bae</v-toolbar-title>
+    <v-toolbar-title>baEApp</v-toolbar-title>
     <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
 
