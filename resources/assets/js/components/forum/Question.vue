@@ -1,5 +1,5 @@
 <template>
-      <v-card class="qns">
+      <v-card class="mt-2">
         <!-- <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px">
         </v-card-media> -->
         <v-card-title primary-title>
@@ -27,8 +27,5 @@ export default {
 </script>
 
 <style scoped>
-.qns {
-  bottom: 2px;
-  padding: 2px 0;
-}
+
 </style>
