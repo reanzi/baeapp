@@ -14,7 +14,7 @@
           <v-toolbar color="cyan" dark dense height="35px">
               <v-toolbar-title>Categories Available</v-toolbar-title>
           </v-toolbar>
-        <div v-for="category in categories" :key="category.id">
+        <div v-for="(category, index) in categories" :key="category.id">
             <v-list-tile>
               <v-list-tile-action>
                   <v-btn icon small @click="edit(index)">
@@ -63,7 +63,7 @@ export default {
       this.editSlug ? this.update() : this.create();
     },
     update() {
-      axios.patch(`/${this.editSlug}`, this.form).then(res => {
+      axios.patch(`/api/category/${this.editSlug}`, this.form).then(res => {
         // unshift is used to push data to the top of a list
         this.categories.unshift(res.data);
         this.form.name = null;
