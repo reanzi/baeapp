@@ -7,10 +7,11 @@ use App\Model\Question;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReplyResource;
+use App\Notifications\NewReplyNotification;
 
 class ReplyController extends Controller
 {
-     /**
+    /**
      * Create a new AuthController instance.
      *
      * @return void
@@ -34,7 +35,7 @@ class ReplyController extends Controller
 
         // return QuestionResource::collection(Question::latest()->get());
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,6 +45,10 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
         $reply = $question->replies()->create($request->all());
+        $user = $question->user;
+        if ($reply->user_id !== $question->user_id) {
+            $user->notify(new NewReplyNotification($reply));
+        }
         return response(['reply' => new ReplyResource($reply)], Response::HTTP_CREATED);
     }
 
@@ -55,7 +60,7 @@ class ReplyController extends Controller
      */
     public function show(Question $question, Reply $reply)
     {
-        return  new ReplyResource($reply);
+        return new ReplyResource($reply);
     }
 
     /**
